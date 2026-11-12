@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Happy Birthday Dipanwita Kapri! 🎂</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Canvas Confetti CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        vibes: ['"Great Vibes"', 'cursive'],
+                        poppins: ['"Poppins"', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            overflow-x: hidden;
+            background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
+            color: #fff;
+            min-height: 100vh;
+        }
+
+        /* Floating Balloons Animation - Visible & Proper Positioning */
+        .balloon {
+            position: fixed;
+            bottom: -60px;
+            width: 40px;
+            height: 55px;
+            border-radius: 50% 50% 50% 50% / 40% 40% 60% 60%;
+            animation: flyUp 9s infinite ease-in-out;
+            z-index: 5;
+            opacity: 0.95;
+            box-shadow: inset -6px -6px 14px rgba(0,0,0,0.3);
+        }
+        .balloon::after {
+            content: "";
+            position: absolute;
+            bottom: -12px;
+            left: 18px;
+            width: 2px;
+            height: 15px;
+            background: rgba(255,255,255,0.7);
+        }
+        @keyframes flyUp {
+            0% { transform: translateY(0) rotate(0deg); opacity: 0.95; }
+            50% { transform: translateY(-50vh) rotate(5deg); }
+            100% { transform: translateY(-105vh) rotate(-5deg); opacity: 0; }
+        }
+
+        /* Happy Birthday Blink Animation */
+        @keyframes blinkText {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.6; transform: scale(1.02); filter: drop-shadow(0 0 15px #ff4b8b); }
+        }
+        .blink-title {
+            animation: blinkText 1.2s infinite ease-in-out;
+        }
+
+        /* Candle Flame Flicker */
+        @keyframes flicker {
+            0%, 100% { transform: scale(1) rotate(-2deg); opacity: 1; }
+            50% { transform: scale(1.15) rotate(2deg); opacity: 0.85; filter: drop-shadow(0 0 10px #fbbf24); }
+        }
+        .flame {
+            animation: flicker 0.6s infinite alternate ease-in-out;
+            transform-origin: bottom center;
+        }
+
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.07);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+        }
+    </style>
+</head>
+<body class="relative min-h-screen flex flex-col items-center justify-between p-3 sm:p-4 md:p-8">
+
+    <!-- ---- SECTION: FLOATING BALLOONS BACKGROUND CONTAINER ---- -->
+    <div id="balloon-container" class="fixed inset-0 overflow-hidden pointer-events-none z-0"></div>
+
+    <!-- ---- SECTION: STICKY TOP CONTAINER (WITH ROUNDED CORNERS) ---- -->
+    <div class="sticky top-0 z-50 w-full max-w-4xl flex flex-col items-center glass-panel rounded-2xl py-3 px-3 my-2 shadow-2xl border border-white/20 backdrop-blur-md">
+        
+        <!-- Header & Title -->
+        <header class="text-center mb-1 max-w-3xl">
+            <div class="inline-block px-3 py-0.5 mb-1 rounded-full bg-pink-500/20 border border-pink-400/40 text-pink-300 text-xs font-semibold tracking-wider uppercase">
+                <i class="fa-solid fa-cake-candles mr-1.5 text-yellow-400"></i> November 13th • Special Day
+            </div>
+            <h1 class="font-vibes text-4xl sm:text-5xl md:text-6xl text-transparent bg-clip-text bg-gradient-to-r from-pink-300 via-yellow-200 to-purple-300 drop-shadow-lg mb-0.5 blink-title">
+                Happy Birthday!
+            </h1>
+            <h2 class="text-lg sm:text-2xl md:text-3xl font-bold text-yellow-300 drop-shadow-md tracking-wide">
+                DIPANWITA KAPRI
+            </h2>
+        </header>
+
+        <!-- Photo Frame -->
+        <div class="relative group flex justify-center mt-2">
+            <div class="absolute -inset-1 bg-gradient-to-r from-pink-600 to-purple-600 rounded-3xl blur opacity-75 group-hover:opacity-100 transition duration-1000"></div>
+            <div class="relative w-40 h-48 sm:w-48 sm:h-56 md:w-56 md:h-64 rounded-2xl overflow-hidden glass-panel p-1.5 shadow-2xl flex items-center justify-center">
+                <img id="dipanwita-photo" src="sunny.png" alt="Dipanwita Kapri" class="w-full h-full object-cover rounded-xl shadow-inner border border-white/20">
+                <div class="absolute bottom-2 left-0 right-0 text-center bg-black/40 backdrop-blur-sm py-0.5 mx-2 rounded-lg">
+                    <span class="text-[11px] font-semibold text-pink-200">Our Beloved Princess 💖</span>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- ---- SECTION: MAIN SCROLLABLE CONTENT GRID ---- -->
+    <main class="z-10 w-full max-w-4xl grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-6 my-4 items-center">
+        
+        <!-- Left Column: Interactive Cake Section -->
+        <div class="md:col-span-5 flex flex-col items-center space-y-4 w-full">
+            <div class="glass-panel w-full rounded-2xl p-3.5 sm:p-4 text-center shadow-xl flex flex-col items-center">
+                <h3 class="text-sm sm:text-base font-semibold text-pink-200 mb-2">Birthday Cake Moment 🎂</h3>
+                
+                <!-- SVG Birthday Cake -->
+                <div id="cake-box" class="relative w-36 h-28 flex items-end justify-center mb-2">
+                    <!-- Candles -->
+                    <div id="candles-container" class="absolute top-1 flex space-x-3 z-20">
+                        <div class="flex flex-col items-center">
+                            <div id="flame-1" class="w-2 h-3.5 bg-gradient-to-t from-yellow-500 to-amber-200 rounded-full flame shadow-lg"></div>
+                            <div class="w-1.5 h-6 bg-pink-300 rounded-t"></div>
+                        </div>
+                        <div class="flex flex-col items-center">
+                            <div id="flame-2" class="w-2 h-3.5 bg-gradient-to-t from-yellow-500 to-amber-200 rounded-full flame shadow-lg" style="animation-delay: 0.2s;"></div>
+                            <div class="w-1.5 h-6 bg-yellow-200 rounded-t"></div>
+                        </div>
+                        <div class="flex flex-col items-center">
+                            <div id="flame-3" class="w-2 h-3.5 bg-gradient-to-t from-yellow-500 to-amber-200 rounded-full flame shadow-lg" style="animation-delay: 0.4s;"></div>
+                            <div class="w-1.5 h-6 bg-pink-300 rounded-t"></div>
+                        </div>
+                    </div>
+                    
+                    <!-- Cake Body SVG -->
+                    <svg viewBox="0 0 200 150" class="w-32 h-24 sm:w-36 sm:h-28 drop-shadow-lg">
+                        <ellipse cx="100" cy="135" rx="80" ry="12" fill="#cbd5e1" />
+                        <path d="M 30 100 C 30 115, 170 115, 170 100 L 170 130 C 170 145, 30 145, 30 130 Z" fill="#ec4899" />
+                        <path d="M 30 100 Q 100 115 170 100 Q 100 85 30 100" fill="#f472b6" />
+                        <path d="M 30 100 Q 40 115 50 103 Q 65 118 80 102 Q 100 120 120 102 Q 135 118 150 103 Q 160 115 170 100 L 170 115 Q 100 130 30 115 Z" fill="#fbcfe8" />
+                        <path d="M 50 65 C 50 78, 150 78, 150 65 L 150 100 C 150 113, 50 113, 50 100 Z" fill="#9333ea" />
+                        <path d="M 50 65 Q 100 78 150 65 Q 100 52 50 65" fill="#a855f7" />
+                        <path d="M 50 65 Q 60 82 75 68 Q 90 85 105 68 Q 120 82 135 68 Q 142 80 150 65 L 150 78 Q 100 92 50 78 Z" fill="#fbcfe8" />
+                        <circle cx="100" cy="55" r="5" fill="#ef4444" />
+                        <circle cx="75" cy="60" r="4" fill="#ef4444" />
+                        <circle cx="125" cy="60" r="4" fill="#ef4444" />
+                    </svg>
+                </div>
+
+                <button onclick="blowCandles()" id="cake-btn" class="w-full py-2.5 px-3 bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 hover:from-pink-600 hover:to-indigo-600 text-white font-bold rounded-xl shadow-lg transition transform active:scale-95 flex items-center justify-center space-x-2 text-xs sm:text-sm">
+                    <i class="fa-solid fa-wind text-yellow-300"></i>
+                    <span id="cake-btn-text">Blow Candles & Cut Cake!</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Right Column: Voice Note & Heartfelt Message -->
+        <div class="md:col-span-7 flex flex-col space-y-3.5 w-full">
+            
+            <!-- Voice Note Box -->
+            <div class="glass-panel p-3.5 sm:p-5 rounded-2xl shadow-xl border border-pink-500/30">
+                <div class="flex items-center justify-between mb-3">
+                    <div class="flex items-center space-x-2.5">
+                        <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-gradient-to-br from-yellow-400 to-pink-500 flex items-center justify-center text-white shadow-md flex-shrink-0">
+                            <i class="fa-solid fa-microphone-lines text-base sm:text-lg animate-pulse"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-xs sm:text-sm md:text-base text-yellow-200">Special Voice Note from Dad (Sovan Kapri)</h4>
+                            <p class="text-[11px] sm:text-xs text-gray-300">Listen to the custom heartfelt voice message</p>
+                        </div>
+                    </div>
+                    <!-- Audio Wave Visualizer Simulation -->
+                    <div class="hidden sm:flex space-x-1 items-end h-6 px-2">
+                        <div class="w-1 bg-pink-400 h-3 animate-bounce" style="animation-delay: 0.1s"></div>
+                        <div class="w-1 bg-yellow-300 h-6 animate-bounce" style="animation-delay: 0.3s"></div>
+                        <div class="w-1 bg-purple-400 h-4 animate-bounce" style="animation-delay: 0.2s"></div>
+                        <div class="w-1 bg-pink-300 h-5 animate-bounce" style="animation-delay: 0.4s"></div>
+                    </div>
+                </div>
+
+                <!-- HTML5 Audio Element & Action Buttons -->
+                <div class="mt-2 pt-2.5 border-t border-white/10 flex flex-col sm:flex-row items-center gap-2.5">
+                    <audio id="custom-voice-note" preload="none">
+                       <source src="voice note.mp3" type="audio/mpeg">
+                    </audio>
+
+                    <button onclick="playVoiceNote()" id="play-voice-btn" class="w-full sm:flex-1 py-2.5 px-3 bg-gradient-to-r from-yellow-400 to-amber-500 hover:from-yellow-500 text-slate-900 font-bold rounded-xl shadow-lg transition flex items-center justify-center space-x-2 text-xs sm:text-sm">
+                        <i id="voice-icon" class="fa-solid fa-play"></i>
+                        <span id="voice-text">Play Dad's Voice Message</span>
+                    </button>
+                    
+                    <button onclick="playBirthdaySong()" id="song-btn" class="w-full sm:w-auto py-2.5 px-3 bg-white/10 hover:bg-white/20 text-pink-200 text-xs sm:text-sm font-semibold rounded-xl border border-white/20 transition flex items-center justify-center space-x-2">
+                        <i id="song-icon" class="fa-solid fa-music text-pink-300"></i>
+                        <span id="song-text">Play Birthday Melody 🎶</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Heartfelt Birthday Message Box -->
+            <div class="glass-panel p-4 sm:p-5 md:p-6 rounded-2xl shadow-xl relative overflow-hidden border border-purple-400/30">
+                <div class="absolute -right-10 -bottom-10 text-white/5 text-8xl sm:text-9xl font-vibes pointer-events-none">
+                    Love
+                </div>
+                <div class="flex items-center space-x-2 mb-2.5">
+                    <i class="fa-solid fa-heart text-pink-400 animate-pulse"></i>
+                    <h3 class="font-bold text-base sm:text-lg text-pink-200">Dearest Sunny,</h3>
+                </div>
+                
+                <div class="text-xs sm:text-sm md:text-base text-gray-100 leading-relaxed space-y-2.5">
+                    <p>
+                        "Happy Birthday to my wonderful darling daughter, Dipanwita Kapri!" 
+                    </p>
+                    <p>
+                        "November 13th is the most joyous and special day in my life. Ever since you came into my world, you have filled every corner with bright sunshine and endless happiness."
+                    </p>
+                    <p>
+                        "May God bless you with good health, immense success, and boundless joy."</p> <p>"May your all dreams come true, and may your sweet smile shine brighter with each passing year."
+                    </p>
+                    <p class="font-semibold text-yellow-300 pt-1">
+                        Sending you all my love and warmest hugs! Happy birthday to You... !<br>
+                        <span class="font-vibes text-xl sm:text-2xl text-pink-300">~ With Love, Your Bapi</span>
+                    </p>
+                </div>
+            </div>
+
+        </div>
+
+    </main>
+
+    <!-- ---- SECTION: FOOTER ---- -->
+    <footer class="z-10 text-center mt-2 text-[11px] sm:text-xs text-gray-300 px-2">
+        <p>Created with love & warmth for Dipanwita Kapri's Birthday 💖 • November 13th</p>
+    </footer>
+
+    <!-- ---- SECTION: JAVASCRIPT LOGIC & ANIMATIONS ---- -->
+    <script>
+        // Floating Balloons Generator
+        const balloonContainer = document.getElementById('balloon-container');
+        const colors = ['#ff4b8b', '#9333ea', '#fbbf24', '#38bdf8', '#f43f5e', '#c084fc'];
+        
+        function createBalloon() {
+            const balloon = document.createElement('div');
+            balloon.className = 'balloon';
+            const randomColor = colors[Math.floor(Math.random() * colors.length)];
+            balloon.style.backgroundColor = randomColor;
+            balloon.style.left = Math.random() * 95 + 'vw';
+            balloon.style.animationDuration = (7 + Math.random() * 4) + 's';
+            balloon.style.animationDelay = (Math.random() * 2) + 's';
+            balloonContainer.appendChild(balloon);
+
+            setTimeout(() => {
+                balloon.remove();
+            }, 10000);
+        }
+
+        for (let i = 0; i < 10; i++) {
+            createBalloon();
+        }
+        setInterval(createBalloon, 1800);
+
+        // Confetti burst on load
+        window.addEventListener('load', () => {
+            confetti({
+                particleCount: 80,
+                spread: 70,
+                origin: { y: 0.6 },
+                colors: ['#ff4b8b', '#fbbf24', '#9333ea', '#ffffff']
+            });
+        });
+
+        // Blow Candles Action & Play Birthday Song automatically
+        let candlesBlown = false;
+        function blowCandles() {
+            const flame1 = document.getElementById('flame-1');
+            const flame2 = document.getElementById('flame-2');
+            const flame3 = document.getElementById('flame-3');
+            const btnText = document.getElementById('cake-btn-text');
+
+            if (!candlesBlown) {
+                flame1.style.display = 'none';
+                flame2.style.display = 'none';
+                flame3.style.display = 'none';
+                btnText.innerText = "Happy Birthday Dipanwita! 🎉";
+                candlesBlown = true;
+
+                // Play Birthday Song automatically when clicking cake button
+                playBirthdaySong();
+
+                // Grand celebration confetti cannon
+                var duration = 3 * 1000;
+                var animationEnd = Date.now() + duration;
+                var defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 1000 };
+
+                var interval = setInterval(function() {
+                    var timeLeft = animationEnd - Date.now();
+                    if (timeLeft <= 0) {
+                        return clearInterval(interval);
+                    }
+                    var particleCount = 30 * (timeLeft / duration);
+                    confetti(Object.assign({}, defaults, { particleCount, origin: { x: Math.random(), y: Math.random() - 0.2 } }));
+                }, 250);
+
+            } else {
+                flame1.style.display = 'block';
+                flame2.style.display = 'block';
+                flame3.style.display = 'block';
+                btnText.innerText = "Blow Candles & Cut Cake!";
+                candlesBlown = false;
+            }
+        }
+
+        // Web Audio API Birthday Song
+        let audioCtx = null;
+        let isPlayingSong = false;
+
+        function playBirthdaySong() {
+            const songBtnText = document.getElementById('song-text');
+            const songIcon = document.getElementById('song-icon');
+
+            if (isPlayingSong) {
+                return;
+            }
+
+            if (!audioCtx) {
+                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            }
+
+            if (audioCtx.state === 'suspended') {
+                audioCtx.resume();
+            }
+
+            isPlayingSong = true;
+            songBtnText.innerText = "Playing Melody...";
+            songIcon.className = "fa-solid fa-spinner fa-spin text-pink-300";
+
+            const notes = [
+                { freq: 264, duration: 0.4 }, { freq: 264, duration: 0.2 }, { freq: 297, duration: 0.6 }, { freq: 264, duration: 0.6 }, { freq: 352, duration: 0.6 }, { freq: 330, duration: 1.2 },
+                { freq: 264, duration: 0.4 }, { freq: 264, duration: 0.2 }, { freq: 297, duration: 0.6 }, { freq: 264, duration: 0.6 }, { freq: 396, duration: 0.6 }, { freq: 352, duration: 1.2 },
+                { freq: 264, duration: 0.4 }, { freq: 264, duration: 0.2 }, { freq: 528, duration: 0.6 }, { freq: 440, duration: 0.6 }, { freq: 352, duration: 0.6 }, { freq: 330, duration: 0.6 }, { freq: 297, duration: 1.2 },
+                { freq: 466, duration: 0.4 }, { freq: 466, duration: 0.2 }, { freq: 440, duration: 0.6 }, { freq: 352, duration: 0.6 }, { freq: 396, duration: 0.6 }, { freq: 352, duration: 1.4 }
+            ];
+
+            let currTime = audioCtx.currentTime;
+            notes.forEach((note) => {
+                const osc = audioCtx.createOscillator();
+                const gainNode = audioCtx.createGain();
+
+                osc.type = 'triangle';
+                osc.frequency.setValueAtTime(note.freq, currTime);
+
+                gainNode.gain.setValueAtTime(0.15, currTime);
+                gainNode.gain.exponentialRampToValueAtTime(0.001, currTime + note.duration - 0.05);
+
+                osc.connect(gainNode);
+                gainNode.connect(audioCtx.destination);
+
+                osc.start(currTime);
+                osc.stop(currTime + note.duration);
+
+                currTime += note.duration;
+            });
+
+            setTimeout(() => {
+                isPlayingSong = false;
+                songBtnText.innerText = "Play Birthday Melody 🎶";
+                songIcon.className = "fa-solid fa-music text-pink-300";
+            }, (currTime - audioCtx.currentTime) * 1000);
+        }
+
+        // Voice Note Player / Speech Synthesis fallback
+        let isSpeakingVoice = false;
+        function playVoiceNote() {
+            const voiceAudio = document.getElementById('custom-voice-note');
+            const voiceIcon = document.getElementById('voice-icon');
+            const voiceText = document.getElementById('voice-text');
+
+            if (voiceAudio.querySelector('source').getAttribute('src')) {
+                if (voiceAudio.paused) {
+                    voiceAudio.play();
+                    voiceIcon.className = "fa-solid fa-pause";
+                    voiceText.innerText = "Pause Voice Message";
+                } else {
+                    voiceAudio.pause();
+                    voiceIcon.className = "fa-solid fa-play";
+                    voiceText.innerText = "Play Dad's Voice Message";
+                }
+                voiceAudio.onended = () => {
+                    voiceIcon.className = "fa-solid fa-play";
+                    voiceText.innerText = "Play Dad's Voice Message";
+                };
+                return;
+            }
+
+            if (!('speechSynthesis' in window)) {
+                return;
+            }
+
+            if (isSpeakingVoice) {
+                window.speechSynthesis.cancel();
+                isSpeakingVoice = false;
+                voiceIcon.className = "fa-solid fa-play";
+                voiceText.innerText = "Play Dad's Voice Message";
+                return;
+            }
+
+            const message = "Happy Birthday to our wonderful darling daughter, Dipanwita Kapri! November 13th is the most joyous day of the year for us. May God bless you with all happiness and success. We love you so much!";
+            const utterance = new SpeechSynthesisUtterance(message);
+            utterance.lang = 'en-US';
+            utterance.rate = 0.95;
+
+            utterance.onstart = () => {
+                isSpeakingVoice = true;
+                voiceIcon.className = "fa-solid fa-pause";
+                voiceText.innerText = "Playing Message... (Click to stop)";
+            };
+
+            utterance.onend = () => {
+                isSpeakingVoice = false;
+                voiceIcon.className = "fa-solid fa-play";
+                voiceText.innerText = "Play Dad's Voice Message";
+            };
+
+            window.speechSynthesis.speak(utterance);
+        }
+    </script>
+</body>
+</html>
